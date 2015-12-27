@@ -151,6 +151,10 @@ static int LoadPartitionContents(const char* filename, FileContents* file) {
     }
 
     int pairs = (colons-1)/2;     // # of (size,sha1) pairs in filename
+    if (!pairs) {
+        free(copy);
+        return 0;
+    }
     int* index = malloc(pairs * sizeof(int));
     size_t* size = malloc(pairs * sizeof(size_t));
     char** sha1sum = malloc(pairs * sizeof(char*));
