@@ -410,6 +410,7 @@ int uncrypt(const char* input_path, const char* map_file, int status_fd) {
 }
 
 int main(int argc, char** argv) {
+    std::string package;
     const char* input_path;
     const char* map_file;
 
@@ -440,7 +441,6 @@ int main(int argc, char** argv) {
             input_path = argv[1];
             map_file = argv[2];
         } else {
-            std::string package;
             if (!find_uncrypt_package(package)) {
                 android::base::WriteStringToFd("-1\n", status_fd);
                 close(status_fd);
